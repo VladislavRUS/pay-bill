@@ -1,0 +1,3 @@
+rootProject.name = 'pay_bill'
+
+include ':app'
