@@ -24,6 +24,12 @@ class Splash extends React.Component {
     navigation.navigate('Login');
   };
 
+  onRegisterPress = () => {
+    const { navigation } = this.props;
+
+    navigation.navigate('Register');
+  };
+
   render() {
     return (
       <Wrapper>
@@ -46,7 +52,9 @@ class Splash extends React.Component {
             <ButtonText onPress={this.onLoginPress}>Login</ButtonText>
           </LoginButton>
           <RegisterButton>
-            <ButtonText>New Customer? Register</ButtonText>
+            <ButtonText onPress={this.onRegisterPress}>
+              New Customer? Register
+            </ButtonText>
           </RegisterButton>
         </ButtonsWrapper>
       </Wrapper>

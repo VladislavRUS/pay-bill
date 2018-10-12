@@ -1,14 +1,12 @@
 import styled from 'styled-components';
-import { RED, WHITE } from '../../constants/colors';
+import { DARK_BLUE, WHITE } from '../../constants/colors';
 
-export const Wrapper = styled.View`
+export const Wrapper = styled.ScrollView`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   padding: 12px;
   background-color: ${WHITE};
-  align-items: center;
-  justify-content: flex-start;
 `;
 
 export const LogoWrapper = styled.View`
@@ -16,7 +14,7 @@ export const LogoWrapper = styled.View`
   margin-bottom: 39px;
 `;
 
-export const Form = styled.View`
+export const Form = styled.KeyboardAvoidingView`
   flex-grow: 1;
   width: 100%;
   display: flex;
@@ -30,22 +28,32 @@ const Input = styled.TextInput`
   width: 100%;
   height: 39px;
   background-color: #d5d5d5;
-  color: #011627;
+  color: ${DARK_BLUE};
   border-radius: 4px;
 `;
 
-export const Username = styled(Input)``;
+export const FullName = styled(Input)``;
+export const Email = styled(Input)``;
+export const Phone = styled(Input)``;
 export const Password = styled(Input)``;
+export const BillId = styled(Input)``;
+
+export const NotSure = styled.Text`
+  margin-top: 5px;
+  margin-left: 22px;
+  margin-bottom: 19px;
+  font-size: 12px;
+  color: ${DARK_BLUE};
+`;
 
 export const SubmitButton = styled.TouchableOpacity`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 5px;
   width: 100%;
   height: 39px;
   border-radius: 4px;
-  background-color: ${RED};
+  background-color: ${DARK_BLUE};
 `;
 
 export const SubmitText = styled.Text`

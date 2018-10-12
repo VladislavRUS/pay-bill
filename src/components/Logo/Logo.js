@@ -9,9 +9,7 @@ class Logo extends React.Component {
           <PayText>Pay</PayText>
           <BillText>Bill</BillText>
         </Title>
-        <Subtitle>
-          Pay your bill on the go now
-        </Subtitle>
+        <Subtitle>Pay your bill on the go now</Subtitle>
       </Wrapper>
     );
   }
