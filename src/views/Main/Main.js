@@ -30,6 +30,7 @@ import water from '../../assets/water.png';
 import gas from '../../assets/gas.png';
 import electricity from '../../assets/electricity.png';
 import internet from '../../assets/internet.png';
+import house from '../../assets/house.png';
 import chevronDark from '../../assets/chevron_dark.png';
 import profile from '../../assets/profile.png';
 import care from '../../assets/care.png';
@@ -74,7 +75,7 @@ const payments = [
     title: 'Rent',
     color: GREY,
     month: 'January',
-    image: internet,
+    image: house,
     sum: '$983'
   }
 ];
