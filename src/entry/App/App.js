@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import Splash from '../../views/Splash';
 import Login from '../../views/Login';
 import Register from '../../views/Register';
+import Main from '../../views/Main';
+import Bill from '../../views/Bill';
 import { Easing, Animated } from 'react-native';
 import { createSwitchNavigator, createStackNavigator } from 'react-navigation';
+import * as Routes from '../../constants/routes';
 
-const transitionConfig = () => {
+const AuthStackTransitionConfig = () => {
   return {
     transitionSpec: {
       duration: 350,
@@ -34,6 +37,35 @@ const transitionConfig = () => {
   };
 };
 
+const MainStackTransitionConfig = () => {
+  return {
+    transitionSpec: {
+      duration: 350,
+      easing: Easing.out(Easing.poly(4)),
+      timing: Animated.timing,
+      useNativeDriver: true
+    },
+    screenInterpolator: sceneProps => {
+      const { layout, position, scene } = sceneProps;
+
+      const thisSceneIndex = scene.index;
+      const width = layout.initWidth;
+
+      const translateX = position.interpolate({
+        inputRange: [thisSceneIndex - 1, thisSceneIndex],
+        outputRange: [width, 0]
+      });
+
+      const opacity = position.interpolate({
+        inputRange: [thisSceneIndex - 1, thisSceneIndex],
+        outputRange: [0, 1]
+      });
+
+      return { opacity, transform: [{ translateX }] };
+    }
+  };
+};
+
 const createNavigator = () =>
   createSwitchNavigator(
     {
@@ -44,14 +76,24 @@ const createNavigator = () =>
           Register
         },
         {
-          initialRouteName: 'Splash',
+          initialRouteName: Routes.SPLASH,
           headerMode: 'none',
-          transitionConfig
+          transitionConfig: AuthStackTransitionConfig
+        }
+      ),
+      MainStack: createStackNavigator(
+        {
+          Main,
+          Bill
+        },
+        {
+          initialRouteName: Routes.MAIN,
+          transitionConfig: MainStackTransitionConfig
         }
       )
     },
     {
-      initialRouteName: 'AuthStack'
+      initialRouteName: Routes.MAIN_STACK
     }
   );
 

@@ -12,6 +12,9 @@ import Logo from '../../components/Logo';
 import { ActivityIndicator, Keyboard } from 'react-native';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
+import * as Routes from '../../constants/routes';
+
+const DELAY_MS = 500;
 
 @observer
 class Login extends React.Component {
@@ -21,6 +24,10 @@ class Login extends React.Component {
   onLogin = () => {
     Keyboard.dismiss();
     this.isLoading = true;
+    setTimeout(() => {
+      const { navigation } = this.props;
+      navigation.navigate(Routes.MAIN_STACK);
+    }, DELAY_MS);
   };
 
   render() {

@@ -12,22 +12,23 @@ import {
   RegisterButton,
   ButtonText
 } from './Splash.styles';
-import splash1 from '../../assets/splash_1.png';
-import splash2 from '../../assets/splash_2.png';
-import splash3 from '../../assets/splash_3.png';
+import water from '../../assets/water.png';
+import gas from '../../assets/gas.png';
+import electricity from '../../assets/electricity.png';
 import Logo from '../../components/Logo';
+import * as Routes from '../../constants/routes';
 
 class Splash extends React.Component {
   onLoginPress = () => {
     const { navigation } = this.props;
 
-    navigation.navigate('Login');
+    navigation.navigate(Routes.LOGIN);
   };
 
   onRegisterPress = () => {
     const { navigation } = this.props;
 
-    navigation.navigate('Register');
+    navigation.navigate(Routes.REGISTER);
   };
 
   render() {
@@ -35,13 +36,13 @@ class Splash extends React.Component {
       <Wrapper>
         <ImagesWrapper>
           <ImageWrapper width={36} height={56}>
-            <Image source={splash1} resizeMode={'cover'} />
+            <Image source={water} resizeMode={'cover'} />
           </ImageWrapper>
           <ImageWrapper width={36} height={56}>
-            <Image source={splash2} />
+            <Image source={gas} />
           </ImageWrapper>
           <ImageWrapper width={50} height={50}>
-            <Image source={splash3} />
+            <Image source={electricity} />
           </ImageWrapper>
         </ImagesWrapper>
         <LogoWrapper>

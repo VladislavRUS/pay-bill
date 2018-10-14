@@ -16,6 +16,9 @@ import Logo from '../../components/Logo';
 import { ActivityIndicator, Keyboard } from 'react-native';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
+import * as Routes from '../../constants/routes';
+
+const DELAY_MS = 500;
 
 @observer
 class Register extends React.Component {
@@ -23,7 +26,13 @@ class Register extends React.Component {
   isLoading = false;
 
   onRegister = () => {
+    Keyboard.dismiss();
     this.isLoading = true;
+
+    setTimeout(() => {
+      const { navigation } = this.props;
+      navigation.navigate(Routes.MAIN);
+    }, DELAY_MS);
   };
 
   render() {
