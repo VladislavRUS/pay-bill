@@ -41,6 +41,7 @@ import {
   LIGHT_BLUE,
   GREY
 } from '../../constants/colors';
+import ActionSheet from 'react-native-actionsheet';
 
 const payments = [
   {
@@ -62,21 +63,21 @@ const payments = [
     color: RED,
     month: 'January',
     image: electricity,
-    sum: '$345'
+    sum: '345'
   },
   {
     title: 'Internet',
     color: LIGHT_BLUE,
     month: 'January',
     image: internet,
-    sum: '$53'
+    sum: '53'
   },
   {
     title: 'Rent',
     color: GREY,
     month: 'January',
     image: house,
-    sum: '$983'
+    sum: '983'
   }
 ];
 
@@ -109,15 +110,24 @@ class Main extends React.Component {
       alignSelf: 'center'
     },
     headerRight: (
-      <LogoutButton onPress={() => navigation.navigate(Routes.AUTH_STACK)}>
+      <LogoutButton onPress={() => navigation.getParam('actionSheet').show()}>
         <LogoutText>Logout</LogoutText>
       </LogoutButton>
     )
   });
 
+  handleActionSheetRef = element => {
+    const { navigation } = this.props;
+    navigation.setParams({
+      actionSheet: element
+    });
+  };
+
   onPress = payment => {
     const { navigation } = this.props;
-    navigation.navigate(Routes.BILL);
+    navigation.navigate(Routes.BILL, {
+      payment
+    });
   };
 
   render() {
@@ -155,6 +165,17 @@ class Main extends React.Component {
               </CompanyName>
               <Rights>2016 Copyright All Rights Reserved</Rights>
             </Copyrights>
+
+            <ActionSheet
+              ref={this.handleActionSheetRef}
+              title={'Are you sure you want to logout?'}
+              options={['Yes', 'Cancel']}
+              onPress={index => {
+                if (index === 0) {
+                  this.props.navigation.navigate(Routes.AUTH_STACK);
+                }
+              }}
+            />
           </Footer>
         }
         data={payments}

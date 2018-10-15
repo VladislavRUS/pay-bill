@@ -35,14 +35,14 @@ class Splash extends React.Component {
     return (
       <Wrapper>
         <ImagesWrapper>
-          <ImageWrapper width={36} height={56}>
-            <Image source={water} resizeMode={'cover'} />
+          <ImageWrapper>
+            <Image source={water} resizeMode={'contain'} />
           </ImageWrapper>
-          <ImageWrapper width={36} height={56}>
-            <Image source={gas} />
+          <ImageWrapper>
+            <Image source={gas} resizeMode={'contain'} />
           </ImageWrapper>
-          <ImageWrapper width={50} height={50}>
-            <Image source={electricity} />
+          <ImageWrapper>
+            <Image source={electricity} resizeMode={'contain'} />
           </ImageWrapper>
         </ImagesWrapper>
         <LogoWrapper>

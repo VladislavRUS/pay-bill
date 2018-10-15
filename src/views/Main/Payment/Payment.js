@@ -18,19 +18,25 @@ const Payment = props => (
     color={props.payment.color}
     onPress={props.onPress}
     activeOpacity={0.7}
+    centered={props.centered}
   >
     <ImageWrapper>
       <Image resizeMode={'contain'} source={props.payment.image} />
     </ImageWrapper>
     <Title>{props.payment.title}</Title>
-    <Info>
-      <Bill>Bill</Bill>
-      <Month>{props.payment.month}</Month>
-      <Sum>${props.payment.sum}</Sum>
-    </Info>
-    <ChevronWrapper>
-      <Chevron source={chevron} resizeMode={'contain'} />
-    </ChevronWrapper>
+    {!props.noInfo && (
+      <Info>
+        <Bill>Bill</Bill>
+        <Month>{props.payment.month}</Month>
+        <Sum>${props.payment.sum}</Sum>
+      </Info>
+    )}
+
+    {!props.noChevron && (
+      <ChevronWrapper>
+        <Chevron source={chevron} resizeMode={'contain'} />
+      </ChevronWrapper>
+    )}
   </Wrapper>
 );
 

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.TouchableOpacity`
   display: flex;
@@ -9,6 +9,12 @@ export const Wrapper = styled.TouchableOpacity`
   padding-right: 20px;
   height: 90px;
   background-color: ${props => props.color || '#000'};
+  
+  ${props =>
+    props.centered &&
+    css`
+      justify-content: center;
+    `}'
 `;
 
 export const ImageWrapper = styled.View`

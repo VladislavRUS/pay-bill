@@ -21,8 +21,8 @@ export const ImagesWrapper = styled.View`
 `;
 
 export const ImageWrapper = styled.View`
-  width: ${props => props.width};
-  height: ${props => props.height};
+  width: 50px;
+  height: 50px;
 `;
 
 export const Image = styled.Image`
