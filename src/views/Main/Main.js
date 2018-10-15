@@ -16,12 +16,7 @@ import {
   Icon,
   Title,
   ChevronIconWrapper,
-  ChevronIcon,
-  Copyrights,
-  CompanyName,
-  Pay,
-  Bill,
-  Rights
+  ChevronIcon
 } from './Main.styles';
 import * as Routes from '../../constants/routes';
 import userImg from '../../assets/user.png';
@@ -42,6 +37,7 @@ import {
   GREY
 } from '../../constants/colors';
 import ActionSheet from 'react-native-actionsheet';
+import FooterLogo from '../../components/FooterLogo';
 
 const payments = [
   {
@@ -158,14 +154,7 @@ class Main extends React.Component {
                 </Option>
               ))}
             </Options>
-            <Copyrights>
-              <CompanyName>
-                <Pay>Pay</Pay>
-                <Bill>Bill - </Bill>
-              </CompanyName>
-              <Rights>2016 Copyright All Rights Reserved</Rights>
-            </Copyrights>
-
+            <FooterLogo />
             <ActionSheet
               ref={this.handleActionSheetRef}
               title={'Are you sure you want to logout?'}

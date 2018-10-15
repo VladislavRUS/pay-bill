@@ -1,16 +1,19 @@
 import React from 'react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
-import { Dimensions, View } from 'react-native';
-import {
-  BarChart,
-  ContributionGraph,
-  LineChart,
-  PieChart,
-  ProgressChart
-} from 'react-native-chart-kit';
+import { Dimensions } from 'react-native';
+import { LineChart } from 'react-native-chart-kit';
 import Payment from '../Main/Payment';
-import { Wrapper } from './Bill.styles';
+import {
+  Wrapper,
+  ChartWrapper,
+  ChartTitle,
+  Footer,
+  PayYourBill,
+  PayYourBillText
+} from './Bill.styles';
+import Cost from './Cost';
+import FooterLogo from '../../components/FooterLogo';
 
 @observer
 class Bill extends React.Component {
@@ -48,7 +51,7 @@ class Bill extends React.Component {
                 Math.random() * 100,
                 Math.random() * 100,
                 Math.random() * 100,
-                Math.random() * 100
+                parseFloat(this.payment.sum)
               ]
             }
           ]
@@ -59,15 +62,13 @@ class Bill extends React.Component {
           backgroundColor: '#f0f0f0',
           backgroundGradientFrom: '#f0f0f0',
           backgroundGradientTo: '#f0f0f0',
-          decimalPlaces: 2, // optional, defaults to 2dp
-          color: (opacity = 1) => this.payment.color,
-          style: {
-            borderRadius: 0
-          }
+          decimalPlaces: 2,
+          color: (opacity = 1) => '#091d2e'
         }}
         style={{
           marginVertical: 8,
-          borderRadius: 16
+          borderRadius: 0,
+          color: 'blue'
         }}
       />
     );
@@ -77,7 +78,19 @@ class Bill extends React.Component {
     return this.payment ? (
       <Wrapper>
         <Payment centered noInfo noChevron payment={this.payment} />
-        {this.renderChart()}
+        <Cost month={this.payment.month} price={this.payment.sum} />
+        <ChartWrapper>
+          <ChartTitle>Your {this.payment.title} Usage</ChartTitle>
+          {this.renderChart()}
+        </ChartWrapper>
+        <Footer>
+          <PayYourBill>
+            <PayYourBillText>
+              Pay your {this.payment.title} bill
+            </PayYourBillText>
+          </PayYourBill>
+        </Footer>
+        <FooterLogo />
       </Wrapper>
     ) : null;
   }

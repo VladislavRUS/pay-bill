@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.View`
   padding-top: 15px;
+  padding-bottom: 20px;
   display: flex;
   flex-direction: column;
   height: 150px;
