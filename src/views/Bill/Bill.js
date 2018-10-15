@@ -77,7 +77,9 @@ class Bill extends React.Component {
 
   onPay = () => {
     const { navigation } = this.props;
-    navigation.navigate(Routes.PAY);
+    navigation.navigate(Routes.PAY, {
+      payment: this.payment
+    });
   };
 
   render() {

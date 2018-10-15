@@ -27,10 +27,29 @@ import aExpress from '../../assets/card_3.png';
 import discover from '../../assets/card_4.png';
 import cvvHint from '../../assets/cvv-hint.png';
 import FooterLogo from '../../components/FooterLogo';
+import * as Routes from '../../constants/routes';
+import ActionSheet from 'react-native-actionsheet';
+import { observable } from 'mobx';
+import { observer } from 'mobx-react';
+import { ActivityIndicator, Alert } from 'react-native';
+import { StackActions, NavigationActions } from 'react-navigation';
 
 const cards = [masterCard, visa, aExpress, discover];
 
+@observer
 class Pay extends React.Component {
+  @observable
+  payment = null;
+  @observable
+  actionSheet = null;
+  @observable
+  isLoading = false;
+
+  componentDidMount() {
+    const { navigation } = this.props;
+    this.payment = navigation.getParam('payment');
+  }
+
   static navigationOptions = ({ navigation }) => ({
     title: 'PayBill',
     headerStyle: {
@@ -45,17 +64,37 @@ class Pay extends React.Component {
     }
   });
 
+  handleActionSheetRef = element => {
+    this.actionSheet = element;
+  };
+
+  onPay = () => {
+    this.actionSheet.show();
+  };
+
+  toMain = () => {
+    const { navigation } = this.props;
+
+    const resetAction = StackActions.reset({
+      index: 0,
+      actions: [NavigationActions.navigate({ routeName: Routes.MAIN })]
+    });
+
+    navigation.dispatch(resetAction);
+  };
+
   render() {
-    return (
+    return this.payment ? (
       <Wrapper>
         <TitleWrapper>
           <Title>Pay your bill</Title>
         </TitleWrapper>
         <Info>
           <Subtitle>
-            You are paying your water bill for the month of January 2016
+            You are paying your {this.payment.title.toLowerCase()} bill for the
+            month of {this.payment.month} 2018
           </Subtitle>
-          <Amount>Total amount due $99.01</Amount>
+          <Amount>Total amount due ${this.payment.sum}</Amount>
         </Info>
         <Cards>
           {cards.map((card, idx) => (
@@ -93,12 +132,35 @@ class Pay extends React.Component {
         </Form>
         <Footer>
           <PayNow onPress={this.onPay}>
-            <PayNowText>Pay now</PayNowText>
+            {this.isLoading ? (
+              <ActivityIndicator color={'#fff'} />
+            ) : (
+              <PayNowText>Pay now</PayNowText>
+            )}
           </PayNow>
         </Footer>
         <FooterLogo />
+        <ActionSheet
+          ref={this.handleActionSheetRef}
+          title={'Are you sure you want to pay?'}
+          options={['Yes', 'Cancel']}
+          onPress={index => {
+            if (index === 0) {
+              this.isLoading = true;
+              setTimeout(() => {
+                this.isLoading = false;
+                Alert.alert(
+                  'Payed!',
+                  'Payments has been successfully done',
+                  [{ text: 'OK', onPress: this.toMain }],
+                  { cancelable: false }
+                );
+              }, 1000);
+            }
+          }}
+        />
       </Wrapper>
-    );
+    ) : null;
   }
 }
 
