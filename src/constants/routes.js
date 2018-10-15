@@ -6,3 +6,4 @@ export const LOGIN = 'Login';
 export const REGISTER = 'Register';
 export const MAIN = 'Main';
 export const BILL = 'Bill';
+export const PAY = 'Pay';

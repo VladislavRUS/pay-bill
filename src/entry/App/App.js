@@ -4,6 +4,7 @@ import Login from '../../views/Login';
 import Register from '../../views/Register';
 import Main from '../../views/Main';
 import Bill from '../../views/Bill';
+import Pay from '../../views/Pay';
 import { Easing, Animated } from 'react-native';
 import { createSwitchNavigator, createStackNavigator } from 'react-navigation';
 import * as Routes from '../../constants/routes';
@@ -84,7 +85,8 @@ const createNavigator = () =>
       MainStack: createStackNavigator(
         {
           Main,
-          Bill
+          Bill,
+          Pay
         },
         {
           initialRouteName: Routes.MAIN,

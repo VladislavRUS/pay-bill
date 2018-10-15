@@ -14,11 +14,12 @@ import {
 } from './Bill.styles';
 import Cost from './Cost';
 import FooterLogo from '../../components/FooterLogo';
+import * as Routes from '../../constants/routes';
 
 @observer
 class Bill extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    title: 'Back',
+    title: 'PayBill',
     headerStyle: {
       borderBottomColor: 'transparent',
       borderWidth: 0,
@@ -74,6 +75,11 @@ class Bill extends React.Component {
     );
   }
 
+  onPay = () => {
+    const { navigation } = this.props;
+    navigation.navigate(Routes.PAY);
+  };
+
   render() {
     return this.payment ? (
       <Wrapper>
@@ -84,7 +90,7 @@ class Bill extends React.Component {
           {this.renderChart()}
         </ChartWrapper>
         <Footer>
-          <PayYourBill>
+          <PayYourBill onPress={this.onPay}>
             <PayYourBillText>
               Pay your {this.payment.title} bill
             </PayYourBillText>
