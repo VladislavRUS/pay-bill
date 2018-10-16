@@ -4,4 +4,5 @@ Uses react-navigation, react-native-communications and mobx
 
 Behance design             |  React-Native
 :-------------------------:|:-------------------------:
-![](./preview.png?raw=true)  |  ![](./pay_bill.gif?raw=true)
+![](./preview.png) |  ![](./pay_bill.gif?raw=true) <img width=800/>
+
