@@ -25,22 +25,11 @@ export const Footer = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 10px;
   position: relative;
+  padding-top: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
   height: 80px;
-`;
-
-export const PayYourBill = styled.TouchableOpacity`
-  position: absolute;
-  left: 10px;
-  right: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  background-color: #ff9f1c;
-  opacity: 0.9;
-  border-radius: 4px;
 `;
 
 export const PayYourBillText = styled.Text`

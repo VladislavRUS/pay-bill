@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Input from '../../components/Input';
 
 export const Wrapper = styled.ScrollView`
   display: flex;
@@ -70,22 +71,6 @@ export const CardImage = styled.Image`
   height: 100%;
 `;
 
-export const Form = styled.KeyboardAvoidingView`
-  padding-left: 10px;
-  padding-right: 10px;
-  display: flex;
-  flex-direction: column;
-`;
-
-const Input = styled.TextInput`
-  margin-bottom: 8px;
-  padding-left: 18px;
-  height: 39px;
-  background-color: #d5d5d5;
-  color: #011627;
-  border-radius: 4px;
-`;
-
 export const Name = styled(Input)``;
 export const CardNumber = styled(Input)``;
 export const ExpirationDate = styled(Input)``;
@@ -111,22 +96,11 @@ export const Footer = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 10px;
   position: relative;
+  padding-top: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
   height: 80px;
-`;
-
-export const PayNow = styled.TouchableOpacity`
-  position: absolute;
-  left: 10px;
-  right: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  background-color: #ff9f1c;
-  opacity: 0.9;
-  border-radius: 4px;
 `;
 
 export const PayNowText = styled.Text`

@@ -1,18 +1,19 @@
 import React from 'react';
 import {
-  Wrapper,
   LogoWrapper,
-  Form,
-  Username,
   Password,
-  SubmitButton,
-  SubmitText
+  SubmitText,
+  Username,
+  Wrapper
 } from './Login.styles';
 import Logo from '../../components/Logo';
 import { ActivityIndicator, Keyboard } from 'react-native';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import * as Routes from '../../constants/routes';
+import Button from '../../components/Button';
+import { RED } from '../../constants/colors';
+import Form from '../../components/Form';
 
 const DELAY_MS = 500;
 
@@ -43,13 +44,14 @@ class Login extends React.Component {
             placeholderTextColor={'#011627'}
             secureTextEntry={true}
           />
-          <SubmitButton onPress={this.onLogin}>
+
+          <Button onPress={this.onLogin} backgroundColor={RED}>
             {this.isLoading ? (
               <ActivityIndicator color={'#fff'} />
             ) : (
               <SubmitText>Login</SubmitText>
             )}
-          </SubmitButton>
+          </Button>
         </Form>
       </Wrapper>
     );

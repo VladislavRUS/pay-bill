@@ -5,11 +5,7 @@ import {
   Image,
   ImageWrapper,
   LogoWrapper,
-  SubtitleWrapper,
-  Subtitle,
   ButtonsWrapper,
-  LoginButton,
-  RegisterButton,
   ButtonText
 } from './Splash.styles';
 import water from '../../assets/water.png';
@@ -17,6 +13,8 @@ import gas from '../../assets/gas.png';
 import electricity from '../../assets/electricity.png';
 import Logo from '../../components/Logo';
 import * as Routes from '../../constants/routes';
+import Button from '../../components/Button';
+import { DARK_BLUE, RED } from '../../constants/colors';
 
 class Splash extends React.Component {
   onLoginPress = () => {
@@ -49,14 +47,12 @@ class Splash extends React.Component {
           <Logo />
         </LogoWrapper>
         <ButtonsWrapper>
-          <LoginButton>
-            <ButtonText onPress={this.onLoginPress}>Login</ButtonText>
-          </LoginButton>
-          <RegisterButton>
-            <ButtonText onPress={this.onRegisterPress}>
-              New Customer? Register
-            </ButtonText>
-          </RegisterButton>
+          <Button onPress={this.onLoginPress} backgroundColor={RED}>
+            <ButtonText>Login</ButtonText>
+          </Button>
+          <Button onPress={this.onRegisterPress} backgroundColor={DARK_BLUE}>
+            <ButtonText>New Customer? Register</ButtonText>
+          </Button>
         </ButtonsWrapper>
       </Wrapper>
     );

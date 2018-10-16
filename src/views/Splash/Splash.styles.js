@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { DARK_BLUE, RED, WHITE } from '../../constants/colors';
+import { WHITE } from '../../constants/colors';
 
 export const Wrapper = styled.View`
   display: flex;
@@ -38,21 +38,6 @@ export const ButtonsWrapper = styled.View`
   width: 100%;
   display: flex;
   flex-direction: column;
-`;
-
-const Button = styled.TouchableOpacity`
-  margin-bottom: 7px;
-  width: 100%;
-  height: 39px;
-  border-radius: 4px;
-`;
-
-export const LoginButton = styled(Button)`
-  background-color: ${RED};
-`;
-
-export const RegisterButton = styled(Button)`
-  background-color: ${DARK_BLUE};
 `;
 
 export const ButtonText = styled.Text`

@@ -3,18 +3,19 @@ import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { Dimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
-import Payment from '../Main/Payment';
 import {
-  Wrapper,
-  ChartWrapper,
   ChartTitle,
+  ChartWrapper,
   Footer,
-  PayYourBill,
-  PayYourBillText
+  PayYourBillText,
+  Wrapper
 } from './Bill.styles';
 import Cost from './Cost';
 import FooterLogo from '../../components/FooterLogo';
 import * as Routes from '../../constants/routes';
+import Button from '../../components/Button';
+import { ORANGE } from '../../constants/colors';
+import TopCard from '../../components/TopCard/TopCard';
 
 @observer
 class Bill extends React.Component {
@@ -85,18 +86,22 @@ class Bill extends React.Component {
   render() {
     return this.payment ? (
       <Wrapper>
-        <Payment centered noInfo noChevron payment={this.payment} />
+        <TopCard
+          image={this.payment.image}
+          text={this.payment.title}
+          backgroundColor={this.payment.color}
+        />
         <Cost month={this.payment.month} price={this.payment.sum} />
         <ChartWrapper>
           <ChartTitle>Your {this.payment.title} Usage</ChartTitle>
           {this.renderChart()}
         </ChartWrapper>
         <Footer>
-          <PayYourBill onPress={this.onPay}>
+          <Button onPress={this.onPay} backgroundColor={ORANGE}>
             <PayYourBillText>
               Pay your {this.payment.title} bill
             </PayYourBillText>
-          </PayYourBill>
+          </Button>
         </Footer>
         <FooterLogo />
       </Wrapper>

@@ -1,15 +1,12 @@
 import React from 'react';
 import {
   Wrapper,
-  TitleWrapper,
-  Title,
   Info,
   Subtitle,
   Amount,
   Cards,
   CardImageWrapper,
   CardImage,
-  Form,
   Name,
   CardNumber,
   ExpirationDate,
@@ -18,7 +15,6 @@ import {
   HintWrapper,
   Hint,
   Footer,
-  PayNow,
   PayNowText
 } from './Pay.styles';
 import masterCard from '../../assets/card_1.png';
@@ -33,6 +29,10 @@ import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { ActivityIndicator, Alert } from 'react-native';
 import { StackActions, NavigationActions } from 'react-navigation';
+import Button from '../../components/Button';
+import { GREY, ORANGE } from '../../constants/colors';
+import TopCard from '../../components/TopCard/TopCard';
+import Form from '../../components/Form';
 
 const cards = [masterCard, visa, aExpress, discover];
 
@@ -86,9 +86,7 @@ class Pay extends React.Component {
   render() {
     return this.payment ? (
       <Wrapper>
-        <TitleWrapper>
-          <Title>Pay your bill</Title>
-        </TitleWrapper>
+        <TopCard backgroundColor={GREY} text={'Pay your bill'} />
         <Info>
           <Subtitle>
             You are paying your {this.payment.title.toLowerCase()} bill for the
@@ -116,7 +114,6 @@ class Pay extends React.Component {
           <ExpirationDate
             placeholder={'Expiration date'}
             placeholderTextColor={'#011627'}
-            keyboardType={'number-pad'}
           />
           <CCVWrapper>
             <CCV
@@ -126,18 +123,18 @@ class Pay extends React.Component {
               keyboardType={'number-pad'}
             />
             <HintWrapper>
-              <Hint source={cvvHint} resizeMode={'stretch'} borderRadius={4} />
+              <Hint source={cvvHint} resizeMode={'stretch'} borderRadius={2} />
             </HintWrapper>
           </CCVWrapper>
         </Form>
         <Footer>
-          <PayNow onPress={this.onPay}>
+          <Button onPress={this.onPay} backgroundColor={ORANGE}>
             {this.isLoading ? (
               <ActivityIndicator color={'#fff'} />
             ) : (
               <PayNowText>Pay now</PayNowText>
             )}
-          </PayNow>
+          </Button>
         </Footer>
         <FooterLogo />
         <ActionSheet
@@ -151,7 +148,7 @@ class Pay extends React.Component {
                 this.isLoading = false;
                 Alert.alert(
                   'Payed!',
-                  'Payments has been successfully done',
+                  'Payment has been successfully done',
                   [{ text: 'OK', onPress: this.toMain }],
                   { cancelable: false }
                 );

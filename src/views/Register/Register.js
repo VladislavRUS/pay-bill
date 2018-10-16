@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Wrapper,
   LogoWrapper,
-  Form,
   FullName,
   Email,
   Phone,
@@ -17,6 +16,7 @@ import { ActivityIndicator, Keyboard } from 'react-native';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import * as Routes from '../../constants/routes';
+import Form from '../../components/Form';
 
 const DELAY_MS = 500;
 
@@ -41,7 +41,7 @@ class Register extends React.Component {
         <LogoWrapper>
           <Logo />
         </LogoWrapper>
-        <Form enabled>
+        <Form>
           <FullName
             placeholder={'Full name'}
             placeholderTextColor={'#011627'}

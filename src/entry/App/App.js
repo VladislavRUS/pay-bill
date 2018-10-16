@@ -8,6 +8,7 @@ import Pay from '../../views/Pay';
 import { Easing, Animated } from 'react-native';
 import { createSwitchNavigator, createStackNavigator } from 'react-navigation';
 import * as Routes from '../../constants/routes';
+import Update from '../../views/Update';
 
 const AuthStackTransitionConfig = () => {
   return {
@@ -86,7 +87,8 @@ const createNavigator = () =>
         {
           Main,
           Bill,
-          Pay
+          Pay,
+          Update
         },
         {
           initialRouteName: Routes.MAIN,
@@ -95,7 +97,7 @@ const createNavigator = () =>
       )
     },
     {
-      initialRouteName: Routes.MAIN_STACK
+      initialRouteName: Routes.AUTH_STACK
     }
   );
 

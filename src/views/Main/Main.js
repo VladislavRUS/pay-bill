@@ -38,6 +38,7 @@ import {
 } from '../../constants/colors';
 import ActionSheet from 'react-native-actionsheet';
 import FooterLogo from '../../components/FooterLogo';
+import { phonecall } from 'react-native-communications';
 
 const payments = [
   {
@@ -80,11 +81,13 @@ const payments = [
 const options = [
   {
     icon: profile,
-    title: 'Update your profile details'
+    title: 'Update your profile details',
+    route: Routes.UPDATE
   },
   {
     icon: care,
-    title: 'Call our 24/7 customer care line'
+    title: 'Call our 24/7 customer care line',
+    phone: '+1234567'
   }
 ];
 
@@ -126,6 +129,19 @@ class Main extends React.Component {
     });
   };
 
+  onRoute = route => {
+    const { navigation } = this.props;
+    navigation.navigate(route);
+  };
+
+  onOption = option => {
+    if (option.route) {
+      this.onRoute(option.route);
+    } else if (option.phone) {
+      phonecall(option.phone, true);
+    }
+  };
+
   render() {
     return (
       <Wrapper
@@ -143,7 +159,11 @@ class Main extends React.Component {
           <Footer>
             <Options>
               {options.map((item, idx) => (
-                <Option key={idx} activeOpacity={0.7}>
+                <Option
+                  key={idx}
+                  activeOpacity={0.7}
+                  onPress={() => this.onOption(item)}
+                >
                   <IconWrapper>
                     <Icon resizeMode={'contain'} source={item.icon} />
                   </IconWrapper>
